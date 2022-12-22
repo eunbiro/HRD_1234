@@ -11,7 +11,7 @@
 	<nav>
 		<ul class="menu">
 			<li><a href="list">후보조회</a></li>
-			<li><a href="insert">투표하기</a></li>
+			<li><a href="add">투표하기</a></li>
 			<li><a href="result">투표검수조회</a></li>
 			<li><a href="rank">후보자등수</a></li>
 			<li><a href="home">홈으로</a></li>

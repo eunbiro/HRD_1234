@@ -45,7 +45,23 @@ public class MemberController extends HttpServlet {
 			break;
 			
 		case "/insert" :
-			site = member.insert(request, response);
+//			site = member.insert(request, response);
+			
+			int result3 = member.insert(request, response);
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			
+			if (result3 == 1) {		// update성공
+				out.println("<script>");				// location.href='HRD1234';
+				out.println("alert('회원등록이 완료 되었습니다!'); location.href='add';");
+				out.println("</script>");
+				out.flush();
+			} else {
+				out.println("<script>");				// location.href='HRD1234';
+				out.println("alert('등록실패!'); location.href='add';");
+				out.println("</script>");
+				out.flush();
+			}
 			break;
 			
 		case "/list" :
@@ -60,10 +76,14 @@ public class MemberController extends HttpServlet {
 			site = member.modify(request, response);
 			break;
 			
+		case "/result" :
+			site = member.selectResult(request, response);
+			break;
+			
 		case "/update" :
 			int result1 = member.update(request, response);
 			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
+			out = response.getWriter();
 			
 			if (result1 == 1) {		// update성공
 				out.println("<script>");				// location.href='HRD1234';
@@ -73,6 +93,24 @@ public class MemberController extends HttpServlet {
 			} else {
 				out.println("<script>");				// location.href='HRD1234';
 				out.println("alert('수정실패!'); location.href='" + context + "';");
+				out.println("</script>");
+				out.flush();
+			}
+			break;
+			
+		case "/delete" :
+			int result2 = member.delete(request, response);
+			response.setContentType("text/html; charset=UTF-8");
+			out = response.getWriter();
+			
+			if (result2 == 1) {		// delete성공
+				out.println("<script>");				// location.href='HRD1234';
+				out.println("alert('회원삭제가 완료 되었습니다!'); location.href='" + context + "';");
+				out.println("</script>");
+				out.flush();
+			} else {
+				out.println("<script>");				// location.href='HRD1234';
+				out.println("alert('삭제실패!'); location.href='" + context + "';");
 				out.println("</script>");
 				out.flush();
 			}
